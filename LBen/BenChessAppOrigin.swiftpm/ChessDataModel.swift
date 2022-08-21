@@ -10,6 +10,7 @@ import SwiftUI
 
 enum GridBackGround {
     case black
+    case white
 }
 
 enum ChessItem: String{
@@ -22,6 +23,8 @@ struct GridItem: Identifiable,Hashable {
     let id = UUID()
     var background: GridBackGround
     var chess: ChessItem
+    var row: Int
+    var column: Int
     
 }
 
@@ -50,7 +53,9 @@ extension GridBackGround {
     var color: Color {
         switch self {
         case .black:
-            return .brown
+            return Color.black
+        case .white:
+            return Color.white
         }
         
     }

@@ -5,7 +5,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing:0){
-            ForEach(0..<vm.grid.count) { i in
+            ForEach(0..<vm.grid.count, id: \.self) { i in
                 HStack(spacing:0){
                     ForEach(0..<vm.grid[i].count) {
                         j in
@@ -41,6 +41,10 @@ struct ContentView: View {
                             }
                             
                             GridView(gridItem: vm.grid[i][j])
+                                .onTapGesture {
+                                    vm.tap(item: vm.grid[i][j])
+                                                           }
+
                         }
                         
                     }
@@ -165,10 +169,6 @@ struct GridView: View {
                     .frame(width: 1.0, height: 1.0)
                 
                 Image(systemName: gridItem.chess.rawValue).resizable().scaledToFit().foregroundColor(gridItem.chess.rawValue == "circle" ? Color.white : Color.black)
-            }
-            .onTapGesture{
-                gridItem.chess = gridItem.chess.nextChess
-                
             }
         }
     }
